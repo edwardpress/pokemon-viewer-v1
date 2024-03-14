@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { PokeApiService } from './service/poke-api.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'pokemon-viewer-v1';
+  constructor(private pokeApi:PokeApiService, private http: HttpClient) {}
+
+  ngOnInit() {
+    this.pokeApi.getPokemonByGen(151,0).subscribe(res=>{
+      console.log("RES",res)
+      
+      
+
+    })
+  }
 }
