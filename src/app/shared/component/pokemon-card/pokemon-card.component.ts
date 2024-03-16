@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { PokemonModel } from '../../../model/pokemon-model';
+
 
 @Component({
   selector: 'app-pokemon-card',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PokemonCardComponent implements OnInit {
 
+  @Input() pokemon!: PokemonModel;
+
   constructor() { }
 
   ngOnInit(): void {
   }
+
+  getPokemonImageUrl(id:number){
+    return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`
+  }
+
 
 }

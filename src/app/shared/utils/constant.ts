@@ -28,29 +28,28 @@ export const POKEMON_GENERATION = [
   value:"gen5",
   count: 156,
   startingCount: 495
-},
-{
-  label:"GENERATION VI",
-  value:"gen6",
-  count: 72,
-  startingCount: 650
-},
-{
-  label:"GENERATION VII",
-  value:"gen7",
-  count: 88,
-  startingCount: 722
-},
-{
-  label:"GENERATION VIII",
-  value:"gen7",
-  count: 96,
-  startingCount: 810
-},
-{
-  label:"GENERATION IX",
-  value:"gen9",
-  count: 120,
-  startingCount: 906
-},
+}
 ]
+
+const colours:  {[key: string]: string} = {
+	normal: '#A8A77A',
+	fire: '#EE8130',
+	water: '#6390F0',
+	electric: '#F7D02C',
+	grass: '#7AC74C',
+	ice: '#96D9D6',
+	fighting: '#C22E28',
+	poison: '#A33EA1',
+	ground: '#E2BF65',
+	flying: '#A98FF3',
+	psychic: '#F95587',
+	bug: '#A6B91A',
+	rock: '#B6A136',
+	ghost: '#735797',
+	dragon: '#6F35FC',
+	dark: '#705746',
+	steel: '#B7B7CE',
+	fairy: '#D685AD',
+};
+
+export const getTypingColor = (key: string): string => colours[key];

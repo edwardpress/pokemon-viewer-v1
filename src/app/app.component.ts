@@ -11,11 +11,6 @@ export class AppComponent {
   constructor(private pokeApi:PokeApiService, private http: HttpClient) {}
 
   ngOnInit() {
-    this.pokeApi.getPokemonByGen(151,0).subscribe(res=>{
-      console.log("RES",res)
-      
-      
 
-    })
   }
 }

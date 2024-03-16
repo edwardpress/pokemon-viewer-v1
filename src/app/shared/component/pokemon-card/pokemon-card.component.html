@@ -1,1 +1,17 @@
-<p>pokemon-card works!</p>
+<mat-card class="card">
+  <mat-card-header>
+    <mat-card-title class="title">  <span>#{{pokemon.id}}</span> {{pokemon.name | titlecase}}</mat-card-title>
+  </mat-card-header>
+  <img mat-card-image [src]="getPokemonImageUrl(pokemon.id)" loading="lazy">
+  <mat-card-content>
+    <mat-chip-list>
+      <mat-chip *ngFor="let type of pokemon.types">      {{type.type.name | uppercase}}
+      </mat-chip>
+    </mat-chip-list>
+
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button>LIKE</button>
+    <button mat-button>SHARE</button>
+  </mat-card-actions>
+</mat-card>

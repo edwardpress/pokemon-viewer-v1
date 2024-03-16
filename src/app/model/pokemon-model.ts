@@ -1,10 +1,10 @@
 export interface PokemonModel {
   name: string;
   ability: string[];
-  type: string[];
+  types: any[];
   stat:any[];
   img:string;
   weight:number;
   height:number;
-  pokeDexNo:number;
+  id:number;
 }

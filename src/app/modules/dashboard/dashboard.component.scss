@@ -1,0 +1,22 @@
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.card {
+  flex: 0 0 calc(50% - 16px); 
+
+}
+
+@media screen and (min-width: 600px) {
+  .card {
+    flex: 0 0 calc(33.33% - 16px); 
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .card {
+    flex: 0 0 calc(16.66% - 16px); 
+  }
+}
