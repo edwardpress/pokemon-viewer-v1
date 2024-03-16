@@ -15,7 +15,7 @@ import { HomeLayoutComponent } from './layout/home-layout.component';
     BrowserModule,
     RouterModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
