@@ -4,6 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { PokemonCardComponent } from './component/pokemon-card/pokemon-card.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule} from '@angular/material/dialog';
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 
 @NgModule({
@@ -11,7 +15,12 @@ import { PokemonCardComponent } from './component/pokemon-card/pokemon-card.comp
   imports: [
     CommonModule,
     MatCardModule,
-    MatChipsModule
+    MatChipsModule,
+    MatButtonModule,
+    MatIconModule,
+    MatDialogModule,
+    NgApexchartsModule,
+
   ],
   exports: [
     FormsModule,

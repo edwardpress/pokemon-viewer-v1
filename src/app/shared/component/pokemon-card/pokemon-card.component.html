@@ -2,7 +2,7 @@
   <mat-card-header>
     <mat-card-title class="title">  <span>#{{pokemon.id}}</span> {{pokemon.name | titlecase}}</mat-card-title>
   </mat-card-header>
-  <img mat-card-image [src]="getPokemonImageUrl(pokemon.id)" loading="lazy">
+  <img mat-card-image class="image" [src]="getPokemonImageUrl(pokemon.id)" loading="lazy">
   <mat-card-content>
     <mat-chip-list>
       <mat-chip [ngStyle]="{'backgroundColor': getBackgroundColor(type.type.name)}" *ngFor="let type of pokemon.types">      {{type.type.name | titlecase}}
@@ -10,8 +10,52 @@
     </mat-chip-list>
 
   </mat-card-content>
-  <mat-card-actions>
-    <button mat-button>LIKE</button>
-    <button mat-button>SHARE</button>
+  <mat-card-actions align="end"> 
+    <button mat-stroked-button class="viewMore" (click)="viewPokemonDetail(pokemonDetail)" >
+      View More <mat-icon>zoom_in</mat-icon>
+    </button>
   </mat-card-actions>
 </mat-card>
+
+<ng-template #pokemonDetail>
+  <!-- <h2 matDialogTitle class="title">{{pokemon.name | titlecase}}</h2> -->
+  <mat-dialog-content>
+    <div class="content">
+      <div class="image-half">
+        <img mat-card-image  [src]="getPokemonImageUrl(pokemon.id)" loading="lazy">
+        <div class="title">{{pokemon.name | titlecase}}</div> 
+        <div class="pokedex">Entry: #{{pokemon.id}}</div>
+        <div class="pokedex">Height: {{pokemon.height/10}}m</div>
+        <div class="pokedex">Weight: {{pokemon.weight/10}}kg</div>
+
+      </div>
+      <div class="statline">
+        {{flavorText | async}}
+
+        <apx-chart
+        [series]="statlineOptions.series"
+        [chart]="statlineOptions.chart"
+        [dataLabels]="statlineOptions.dataLabels"
+        [plotOptions]="statlineOptions.plotOptions"
+        [xaxis]="statlineOptions.xaxis"
+      ></apx-chart>
+      <div class="title">Type</div> 
+
+      <mat-chip-list>
+        <mat-chip [ngStyle]="{'backgroundColor': getBackgroundColor(type.type.name)}" *ngFor="let type of pokemon.types">      {{type.type.name | titlecase}}
+        </mat-chip>
+      </mat-chip-list>
+
+      <div class="title">Abilities</div> 
+      <ul>
+        <li *ngFor="let ability of pokemon.abilities" > {{ability.ability.name | titlecase}} </li>
+      </ul>
+
+      </div>
+    </div>
+   
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button matDialogClose color="primary">Close</button>
+  </mat-dialog-actions>
+</ng-template>
