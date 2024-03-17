@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { PokemonModel } from '../../../model/pokemon-model';
+import { getTypingColor } from '../../utils/constant';
 
 
 @Component({
@@ -20,5 +21,7 @@ export class PokemonCardComponent implements OnInit {
     return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`
   }
 
-
+  getBackgroundColor(type:string){
+    return getTypingColor(type)
+  }
 }
