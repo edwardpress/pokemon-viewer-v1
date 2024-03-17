@@ -1,0 +1,25 @@
+.navBar{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-left: auto;
+  
+}
+
+@media(max-width: 600px) {
+    .nav-buttons {
+      display: none; 
+    }
+    .nav-menu{
+        display: block;
+    }
+}
+
+@media(min-width: 600px) {
+    .nav-menu{
+        display: none;
+    }
+    .nav-buttons {
+        display: flex; 
+      }
+}

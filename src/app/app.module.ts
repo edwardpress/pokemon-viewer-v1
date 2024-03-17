@@ -8,27 +8,26 @@ import { HomeLayoutComponent } from './layout/home-layout.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ErrorHttpInterceptor } from './core/error-http.interceptor';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-
+import { HomeLayoutModule } from './layout/home-layout.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeLayoutComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     RouterModule,
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatSnackBarModule
-    
+    MatSnackBarModule,
+    HomeLayoutModule
   ],
-  providers: [ {
-    provide: HTTP_INTERCEPTORS,
-    useClass: ErrorHttpInterceptor,
-    multi: true
-  }],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorHttpInterceptor,
+      multi: true,
+    },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

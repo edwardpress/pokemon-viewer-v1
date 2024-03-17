@@ -1,7 +1,14 @@
-<div  class="dashboard-container">
-  <div id="main-content">
-    <div>
-      <!-- <router-outlet></router-outlet> -->
-    </div>
-  </div>
-</div>
+<mat-toolbar color="primary">
+  <span>PokeViewer Version 1</span>
+  <span class="navBar">
+    <button class="nav-buttons" mat-button routerLink="/dashboard">Poke Viewers</button>
+    <button class="nav-buttons" mat-button routerLink="/teamBuilder">Team Builder</button>
+    <button class="nav-menu" mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu" >
+      <button mat-menu-item routerLink="/dashboard">Poke Viewers</button>
+      <button mat-menu-item routerLink="/teamBuilder">Team Builder</button>
+    </mat-menu>
+  </span>
+</mat-toolbar>

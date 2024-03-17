@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule} from '@angular/material/dialog';
 import { NgApexchartsModule } from 'ng-apexcharts';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 @NgModule({
@@ -20,11 +21,15 @@ import { NgApexchartsModule } from 'ng-apexcharts';
     MatIconModule,
     MatDialogModule,
     NgApexchartsModule,
+    MatMenuModule
 
   ],
   exports: [
     FormsModule,
-    PokemonCardComponent
+    PokemonCardComponent,
+    MatButtonModule,
+    MatMenuModule,
+    MatIconModule
   ]
 })
 export class SharedModule { }
