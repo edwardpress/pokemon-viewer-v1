@@ -2,32 +2,32 @@ export const POKEMON_GENERATION = [
 {
   label:"GENERATION I",
   value:"gen1",
-  count: 151,
-  startingCount: 1
+  limit: 151,
+  offset: 0
 },
 {
   label:"GENERATION II",
   value:"gen2",
-  count: 100,
-  startingCount: 152
+  limit: 100,
+  offset: 151
 },
 {
   label:"GENERATION III",
   value:"gen3",
-  count: 135,
-  startingCount: 252
+  limit: 135,
+  offset: 251
 },
 {
   label:"GENERATION IV",
   value:"gen4",
-  count: 107,
-  startingCount: 387
+  limit: 107,
+  offset: 386
 },
 {
   label:"GENERATION V",
   value:"gen5",
-  count: 156,
-  startingCount: 495
+  limit: 155,
+  offset: 494
 }
 ]
 
@@ -53,5 +53,7 @@ const colours:  {[key: string]: string} = {
 };
 
 export const getTypingColor = (key: string): string => colours[key];
+
+export const getLimitAndOffsetByGen = (gen:string) => POKEMON_GENERATION.find(res=>res.value === gen)!!
 
 export const getPokemonImageUrl = (id:number) => `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`

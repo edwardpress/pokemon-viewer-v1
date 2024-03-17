@@ -1,12 +1,21 @@
 .card-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjust as needed */
+  gap: 16px; 
+
 }
 
 .card {
   flex: 0 0 calc(50% - 16px); 
+}
 
+.fab {
+  position: fixed;
+  bottom: 20px; 
+  right: 20px; 
+  z-index: 100;
 }
 
 @media screen and (min-width: 600px) {

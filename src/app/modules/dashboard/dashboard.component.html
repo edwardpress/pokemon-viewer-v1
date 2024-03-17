@@ -1,6 +1,14 @@
 <div class="card-container">
-  <div class="card" *ngFor="let pokemon of pokemons">
+  <div class="card" *ngFor="let pokemon of pokemons$ | async">
     <app-pokemon-card [pokemon]="pokemon" ></app-pokemon-card>
 
   </div>
 </div>
+
+<button mat-fab color="primary" [matMenuTriggerFor]="menu" class="fab">
+  <mat-icon svgIcon="pokemon"></mat-icon>
+</button>
+
+<mat-menu #menu="matMenu" >
+  <button mat-menu-item *ngFor="let gen of pokemonGeneration" (click)="updateGeneration(gen.value)">{{gen.label}}</button>
+</mat-menu>
