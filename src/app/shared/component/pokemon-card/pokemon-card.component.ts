@@ -27,16 +27,14 @@ export class PokemonCardComponent implements OnInit {
     this.statlineOptions = {
       series: [
         {
-          name: "basic",
           data: [...this.pokemon.stats.map(res=>res.base_stat)]
         }
       ],
       chart: {
         type: "bar",
-        height: 250,
         toolbar: {
           show: false
-        }
+        },
       },
       plotOptions: {
         bar: {
@@ -69,7 +67,8 @@ export class PokemonCardComponent implements OnInit {
   viewPokemonDetail(dialog:TemplateRef<any>){
 
       this.dialog.open(dialog,{
- 
+        width:"50vw",
+        minWidth: "400px"
       })
 
 
