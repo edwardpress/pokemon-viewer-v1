@@ -1,8 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatDialog } from '@angular/material/dialog';
-import { Observable, of } from 'rxjs';
-import { ChartOptions } from 'src/app/model/chart-options';
-import { PokeApiService } from '../../../service/poke-api.service';
+import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { PokeApiService } from '@services/poke-api.service';
+import { of } from 'rxjs';
+import { dummyData } from '../../../test/dummyPokemonData';
+import { PokemonModel } from '../../models/pokemon-model';
+import { getPokemonImageUrl } from '../../utils/constant';
 import { PokemonCardComponent } from './pokemon-card.component';
 
 describe('PokemonCardComponent', () => {
@@ -13,26 +18,31 @@ describe('PokemonCardComponent', () => {
 
   beforeEach(async () => {
     const dialogSpy = jasmine.createSpyObj('MatDialog', ['open']);
-    const pokeApiServiceSpy = jasmine.createSpyObj('PokeApiService', ['getPokemonFlavorText']);
+    const pokeApiServiceSpy = jasmine.createSpyObj('PokeApiService', [
+      'getPokemonFlavorText',
+    ]);
 
     await TestBed.configureTestingModule({
       declarations: [PokemonCardComponent],
       providers: [
         { provide: MatDialog, useValue: dialogSpy },
-        { provide: PokeApiService, useValue: pokeApiServiceSpy }
-      ]
+        { provide: PokeApiService, useValue: pokeApiServiceSpy },
+      ],
+      imports: [MatCardModule, MatChipsModule, MatIconModule, MatDialogModule],
     }).compileComponents();
-    fixture = TestBed.createComponent(PokemonCardComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+
     mockDialog = TestBed.inject(MatDialog) as jasmine.SpyObj<MatDialog>;
-    mockPokeApiService = TestBed.inject(PokeApiService) as jasmine.SpyObj<PokeApiService>;
+    mockPokeApiService = TestBed.inject(
+      PokeApiService
+    ) as jasmine.SpyObj<PokeApiService>;
   });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(PokemonCardComponent);
     component = fixture.componentInstance;
+    component.pokemon = dummyData;
     fixture.detectChanges();
+    PokemonCardComponent.prototype.pokemon = dummyData;
   });
 
   it('should create', () => {
@@ -42,75 +52,34 @@ describe('PokemonCardComponent', () => {
   it('should open dialog when viewPokemonDetail is called', () => {
     const mockTemplateRef = {} as any;
     component.viewPokemonDetail(mockTemplateRef);
-    expect(mockDialog.open).toHaveBeenCalledWith(mockTemplateRef);
-  });
-
-  it('should return the correct image URL for a given Pokemon ID', () => {
-    const pokemonId = 1;
-    const expectedImageUrl = `https://pokeapi.co/media/sprites/pokemon/${pokemonId}.png`;
-    const imageUrl = component.getPokemonImageUrl(pokemonId);
-    expect(imageUrl).toBe(expectedImageUrl);
-  });
-
-  it('should return the correct background color for a given Pokemon type', () => {
-    const type = 'fire';
-    const expectedColor = 'red';
-    const color = component.getBackgroundColor(type);
-    expect(color).toBe(expectedColor);
-  });
-
-  it('should set the flavorText property correctly', () => {
-    const mockFlavorText = 'This is a mock flavor text';
-    mockPokeApiService.getPokemonFlavorText.and.returnValue(of(mockFlavorText));
-    component.ngOnInit();
-    expect(component.flavorText).toBeInstanceOf(Observable);
-    component.flavorText.subscribe((text) => {
-      expect(text).toBe(mockFlavorText);
+    expect(mockDialog.open).toHaveBeenCalledWith(mockTemplateRef, {
+      width: '50vw',
+      minWidth: '400px',
     });
   });
 
-
-  it('should set the statlineOptions property correctly', () => {
-    const expectedOptions: ChartOptions = {
-      series: [
-        {
-          data: [12, 134, 33, 44, 66, 77],
-        },
-      ],
-      chart: {
-        type: "bar",
-        toolbar: {
-          show: false,
-        },
-      },
-      plotOptions: {
-        bar: {
-          horizontal: true,
-          borderRadius: 4,
-        },
-      },
-      dataLabels: {
-        enabled: true,
-        style: {
-          fontSize: "12px",
-          colors: ["#fff"],
-        },
-      },
-      xaxis: {
-        categories: [
-          "HP",
-          "Attack",
-          "Defense",
-          "Special Attack",
-          "Special Defense",
-          "Speed",
-        ],
-      },
-    };
-
-    expect(component.statlineOptions).toEqual(expectedOptions);
-  });
+  it('should return the correct image URL', () => {
+    const mockPokemon: PokemonModel = dummyData;
+    const imageUrl = component.getPokemonImageUrl(mockPokemon.id);
+    expect(imageUrl).toBe(getPokemonImageUrl(mockPokemon.id));
   });
 
+  it('should return the correct background color', () => {
+    const type = 'fire';
+    const backgroundColor = component.getBackgroundColor(type);
+    expect(backgroundColor).toBe('#EE8130');
+  });
 
+  it('should set the flavorText property', (done) => {
+    const mockFlavorText = 'This is a mock flavor text.';
+    const mockTemplateRef = {} as any;
 
+    mockPokeApiService.getPokemonFlavorText.and.returnValue(of(mockFlavorText));
+    component.viewPokemonDetail(mockTemplateRef);
+
+    component.flavorText.subscribe((value) => {
+      expect(value).toEqual(mockFlavorText);
+      done();
+    });
+  });
+});

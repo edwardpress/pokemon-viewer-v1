@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { dummyData } from '../test/dummyPokemonData';
+import { dummyData } from '../../test/dummyPokemonData';
 import { CachedResultService } from './cached-result.service';
 
 describe('CachedResultService', () => {

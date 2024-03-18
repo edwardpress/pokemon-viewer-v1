@@ -1,8 +1,8 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
-import { dummyData } from '../test/dummyPokemonData';
-import { dummyPokemonSpeciesData } from '../test/dummyPokemonSpeciesData';
+import { dummyData } from '../../test/dummyPokemonData';
+import { dummyPokemonSpeciesData } from '../../test/dummyPokemonSpeciesData';
 import { CachedResultService } from './cached-result.service';
 import { PokeApiService } from './poke-api.service';
 

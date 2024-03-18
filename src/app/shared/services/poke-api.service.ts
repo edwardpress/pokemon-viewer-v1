@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { CachedResultService } from '@services/cached-result.service';
+import { getLimitAndOffsetByGen } from '@utils/constant';
 import { Observable, forkJoin, map, of, switchMap, tap } from 'rxjs';
-import { environment } from '../environment/environment.dev';
-import { getLimitAndOffsetByGen } from '../shared/utils/constant';
-import { CachedResultService } from './cached-result.service';
+import { environment } from '../../environment/environment.dev';
 
 @Injectable({
   providedIn: 'root',

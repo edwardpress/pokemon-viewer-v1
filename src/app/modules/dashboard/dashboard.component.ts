@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { PokemonModel } from '@models/pokemon-model';
+import { PokeApiService } from '@services/poke-api.service';
+import { POKEMON_GENERATION } from '@utils/constant';
 import { Observable, of } from 'rxjs';
-import { POKEMON_GENERATION } from 'src/app/shared/utils/constant';
-import { PokemonModel } from '../../model/pokemon-model';
-import { PokeApiService } from '../../service/poke-api.service';
 
 @Component({
   selector: 'app-dashboard',

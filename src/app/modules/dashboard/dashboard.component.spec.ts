@@ -10,7 +10,7 @@ import { By, DomSanitizer } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { of } from 'rxjs';
 import { POKEMON_GENERATION } from 'src/app/shared/utils/constant';
-import { PokeApiService } from '../../service/poke-api.service';
+import { PokeApiService } from '../../shared/services/poke-api.service';
 import { dummyData } from '../../test/dummyPokemonData';
 import { DashboardComponent } from './dashboard.component';
 

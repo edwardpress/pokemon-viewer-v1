@@ -3,7 +3,7 @@ export interface PokemonModel {
   abilities: any[];
   types: any[];
   stats:any[];
-  img:string;
+  img?:string;
   weight:number;
   height:number;
   id:number;

@@ -1,9 +1,9 @@
 import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { PokemonModel } from '../../../model/pokemon-model';
-import { getTypingColor, getPokemonImageUrl } from '../../utils/constant';
 import { MatDialog } from '@angular/material/dialog';
-import { ChartOptions } from 'src/app/model/chart-options';
-import { PokeApiService } from 'src/app/service/poke-api.service';
+import { ChartOptions } from '@models/chart-options';
+import { PokemonModel } from '@models/pokemon-model';
+import { PokeApiService } from '@services/poke-api.service';
+import { getPokemonImageUrl, getTypingColor } from '@utils/constant';
 import { Observable } from 'rxjs';
 
 
