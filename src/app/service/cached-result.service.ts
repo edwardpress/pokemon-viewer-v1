@@ -1,6 +1,4 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +7,7 @@ import { Observable } from 'rxjs';
 export class CachedResultService {
   private cache = new Map<string, any>();
 
-  constructor(private http: HttpClient) {}
+  constructor() {}
   getData(generation: string): any {
     if (this.cache.has(generation)) {
       return (this.cache.get(generation) );

@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit {
 
   getPokemonByGeneration(generation:string){
     this.pokemons$ =  this.pokeApi.getPokemonData(generation)
-    this.pokemons$.subscribe(data => console.log(data))
+    this.pokemons$.subscribe(data => console.log(data[0]))
   }
 
   updateGeneration(value:string){

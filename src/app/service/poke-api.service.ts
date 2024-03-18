@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, forkJoin, map, of, switchMap, tap } from 'rxjs';
 import { environment } from '../environment/environment.dev';
-import { CachedResultService } from './cached-result.service';
 import { getLimitAndOffsetByGen } from '../shared/utils/constant';
+import { CachedResultService } from './cached-result.service';
 
 @Injectable({
   providedIn: 'root',
@@ -21,23 +21,26 @@ export class PokeApiService {
   }
 
   getPokemonByGen(gen: string): Observable<any> {
-    const { limit, offset } = getLimitAndOffsetByGen(gen);
-
     return this.http
-      .get(`${environment.pokeApi}?limit=${limit}&offset=${offset}`)
+      .get(this.getApiUrl(gen))
       .pipe(
-        switchMap((api: any) => {
-          const apiUrlsArray = api.results.map((pokemon: any) => {
-            return this.http.get(pokemon.url);
-          });
-          return forkJoin(apiUrlsArray).pipe(
-            tap((data) => {
-              this.cachedService.setData(gen, data);
-            })
-          );
-        })
+        switchMap(api => this.processApiResponse(api)),
+        tap(data => this.cachedService.setData(gen, data))
       );
   }
+
+  getApiUrl(gen: string): string {
+    const { limit, offset } = getLimitAndOffsetByGen(gen);
+    return `${environment.pokeApi}?limit=${limit}&offset=${offset}`;
+  }
+  
+ processApiResponse(api: any): Observable<any> {
+    const apiUrlsArray = api.results.map((pokemon: any) => {
+      return this.http.get(pokemon.url);
+    });
+    return forkJoin(apiUrlsArray);
+  }
+  
 
   getPokemonFlavorText(id: number) {
     return this.http
@@ -51,4 +54,6 @@ export class PokeApiService {
         )
       );
   }
+
+
 }

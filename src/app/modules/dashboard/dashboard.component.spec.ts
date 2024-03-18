@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { of } from 'rxjs';
 import { POKEMON_GENERATION } from 'src/app/shared/utils/constant';
 import { PokeApiService } from '../../service/poke-api.service';
+import { dummyData } from '../../test/dummyPokemonData';
 import { DashboardComponent } from './dashboard.component';
 
 describe('DashboardComponent', () => {
@@ -24,22 +25,7 @@ describe('DashboardComponent', () => {
     ]);
     pokeApiSpy.getPokemonData.and.returnValue(
       of([
-        {
-          ability: {
-            name: 'overgrow',
-            url: 'https://pokeapi.co/api/v2/ability/65/',
-          },
-          is_hidden: false,
-          slot: 1,
-        },
-        {
-          ability: {
-            name: 'chlorophyll',
-            url: 'https://pokeapi.co/api/v2/ability/34/',
-          },
-          is_hidden: true,
-          slot: 3,
-        },
+      dummyData
       ])
     );
     const iconRegistrySpy = jasmine.createSpyObj('MatIconRegistry', [
