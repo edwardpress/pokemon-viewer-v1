@@ -12,7 +12,7 @@ export class CachedResultService {
     if (this.cache.has(generation)) {
       return (this.cache.get(generation) );
     }
-    return false
+    return undefined
   }
 
   setData(generation:string, response:any){
