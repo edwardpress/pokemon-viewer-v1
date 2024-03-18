@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { MatMenuModule } from '@angular/material/menu';
 import { HomeLayoutComponent } from './home-layout.component';
 
 describe('HomeLayoutComponent', () => {
@@ -8,7 +9,8 @@ describe('HomeLayoutComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HomeLayoutComponent ]
+      declarations: [ HomeLayoutComponent ],
+      imports: [MatMenuModule]
     })
     .compileComponents();
   });

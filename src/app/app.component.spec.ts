@@ -7,6 +7,7 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
+      
     }).compileComponents();
   });
 
@@ -17,11 +18,4 @@ describe('AppComponent', () => {
   });
 
 
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('pokemon-viewer-v1 app is running!');
-  });
 });

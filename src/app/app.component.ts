@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -9,7 +8,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  constructor(private http: HttpClient, private matIconRegistry: MatIconRegistry,private sanitizer: DomSanitizer) {
+  constructor( private matIconRegistry: MatIconRegistry,private sanitizer: DomSanitizer) {
     this.matIconRegistry.addSvgIcon('pokemon', this.sanitizer.bypassSecurityTrustResourceUrl('./assets/pokemon.svg'))
   }
 
