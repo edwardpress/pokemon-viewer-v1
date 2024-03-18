@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { PokemonModel } from '../../model/pokemon-model';
-import { PokeApiService } from '../../service/poke-api.service';
 import { Observable, of } from 'rxjs';
 import { POKEMON_GENERATION } from 'src/app/shared/utils/constant';
+import { PokemonModel } from '../../model/pokemon-model';
+import { PokeApiService } from '../../service/poke-api.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -21,6 +21,7 @@ export class DashboardComponent implements OnInit {
 
   getPokemonByGeneration(generation:string){
     this.pokemons$ =  this.pokeApi.getPokemonData(generation)
+    this.pokemons$.subscribe(data => console.log(data))
   }
 
   updateGeneration(value:string){
