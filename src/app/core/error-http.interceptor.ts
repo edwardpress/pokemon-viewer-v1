@@ -1,13 +1,13 @@
-import { Injectable } from '@angular/core';
 import {
-  HttpRequest,
-  HttpHandler,
+  HttpErrorResponse,
   HttpEvent,
+  HttpHandler,
   HttpInterceptor,
-  HttpErrorResponse
+  HttpRequest
 } from '@angular/common/http';
-import { Observable, catchError, throwError } from 'rxjs';
+import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Observable, catchError, throwError } from 'rxjs';
 
 @Injectable()
 export class ErrorHttpInterceptor implements HttpInterceptor {
@@ -37,7 +37,7 @@ export class ErrorHttpInterceptor implements HttpInterceptor {
             verticalPosition: 'top'
           });
 
-          return throwError(()=>new Error(errorMsg));
+          return throwError(()=>error);
         })
       )
   }
